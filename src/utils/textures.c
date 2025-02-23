@@ -6,11 +6,56 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:14:09 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/22 15:22:47 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/23 17:49:13 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	set_texture(char **files, char *path, enum e_identifier id)
+{
+	if (id == NO)
+	{
+		if (!files[0])
+			return (files[0] = path, 0);
+	}
+	else if (id == SO)
+	{
+		if (!files[1])
+			return (files[1] = path, 0);
+	}
+	else if (id == EA)
+	{
+		if (!files[2])
+			return (files[2] = path, 0);
+	}
+	else if (id == WE)
+	{
+		if (!files[3])
+			return (files[3] = path, 0);
+	}
+	return (free(path), 1);
+}
+
+int	parse_texture(enum e_identifier id, char **files, char *texture)
+{
+	int		i;
+	char	*tmp;
+
+	texture = skip_pattern(texture, " \t");
+	if (!*texture || *texture == '\n')
+		exit(ft_error("Error\nFound identifier but no path\n"));
+	i = goto_pattern(texture, " \t\n");
+	if (texture[i] && texture[i] != '\n')
+	{
+		tmp = skip_pattern(&texture[i], " \t");
+		if (*tmp != 0 && *tmp != '\n')
+			exit(ft_error("Error\nNot valid path\n"));
+	}
+	if (set_texture(files, ft_strdup_len(texture, i), id))
+		exit(ft_error("Error\nDuplicated texture????????\n"));
+	return (0);
+}
 
 void	get_textures(char **content, t_textures *textures)
 {
