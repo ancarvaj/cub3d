@@ -6,7 +6,7 @@
 /*   By: ancarvaj <ancarvaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 11:32:55 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/13 17:11:58 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/23 18:37:30 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ static char	*ft_get_res(char *s, int start)
 {
 	char	*str;
 	int		i;
-
 
 	if (s[start] == '\0')
 		return (ft_free(&s));
