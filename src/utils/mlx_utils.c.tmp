@@ -1,0 +1,147 @@
+#include "cub3d.h"
+
+void	update_position(t_cub3d *data, int vector)
+{
+	const double	 move_speed = 0.2;
+	const double	 rotation_speed = 0.1;
+
+	if (vector == UP)
+		ft_up_player(data, move_speed);
+	if (vector == DOWN)
+		ft_down_player(data, move_speed);
+	if (vector == LEFT)
+		ft_left_player(data, rotation_speed);
+	if (vector == RIGHT)
+		ft_right_player(data, rotation_speed);
+}
+
+double camera_x(int x)
+{
+  return (2 * x / (double)WINDOW_WIDTH - 1); // Coordenada X en el plano de la cámara (-1 a 1)
+}
+
+void render_frame(t_cub3d *data)
+{
+    int x;
+    //t_raycast r;
+
+    print_floor_ceiling(data, data->textures.color[1], data->textures.color[0]);
+    x = 0;
+    while (x < WINDOW_WIDTH)
+    {
+        // 1. Calcular la dirección del rayo
+        double rayDirX = data->player.direction.x + data->player.camera.x * camera_x(x);
+        double rayDirY = data->player.direction.y + data->player.camera.y * camera_x(x);
+
+        // 2. Algoritmo DDA para encontrar la pared
+        int mapX = (int)data->player.position.x;
+        int mapY = (int)data->player.position.y;
+        double sideDistX, sideDistY;
+        if (rayDirX == 0) rayDirX = 1e-30; // Valor muy pequeño
+        if (rayDirY == 0) rayDirY = 1e-30;
+        double deltaDistX = fabs(1 / rayDirX);
+        double deltaDistY = fabs(1 / rayDirY);
+        double perpWallDist;
+        int stepX, stepY;
+        int hit = 0;
+        int side;
+		if (rayDirX < 0) {
+            stepX = -1;
+            sideDistX = (data->player.position.x - mapX) * deltaDistX;
+        } else {
+            stepX = 1;
+            sideDistX = (mapX + 1.0 - data->player.position.x) * deltaDistX;
+        }
+        if (rayDirY < 0) {
+            stepY = -1;
+            sideDistY = (data->player.position.y - mapY) * deltaDistY;
+        } else {
+            stepY = 1;
+            sideDistY = (mapY + 1.0 - data->player.position.y) * deltaDistY;
+        }
+
+        while (hit == 0) {
+            if (sideDistX < sideDistY) {
+                sideDistX += deltaDistX;
+                mapX += stepX;
+                side = 0;
+            } else {
+                sideDistY += deltaDistY;
+                mapY += stepY;
+                side = 1;
+            }
+            if (data->map.map[mapX][mapY] > 0) hit = 1; // ¡Pared encontrada!
+        }
+        // 3. Calcular la distancia perpendicular al muro
+       if (side == 0) perpWallDist = (mapX - data->player.position.x + (1 - stepX) / 2) / rayDirX;
+        else perpWallDist = (mapY - data->player.position.y + (1 - stepY) / 2) / rayDirY;
+        // 4. Calcular la altura de la columna a dibujar
+        
+        if (perpWallDist < 0.1) // Ajusta este valor según sea necesario
+             perpWallDist = 0.1;
+        int lineHeight = (int)(WINDOW_HEIGHT / perpWallDist);
+        if (lineHeight > WINDOW_HEIGHT) lineHeight = WINDOW_HEIGHT; // Limita la altura máxima
+        if (lineHeight < 1) lineHeight = 0; // Limita la altura mínima
+        int drawStart = -lineHeight / 2 + WINDOW_HEIGHT / 2;
+        if (drawStart < 0) drawStart = 0;
+        int drawEnd = lineHeight / 2 + WINDOW_HEIGHT / 2;
+        if (drawEnd >= WINDOW_HEIGHT) drawEnd = WINDOW_HEIGHT - 1;
+// 5. Seleccionar la textura correcta
+        int texNum;
+        if (side == 0) {
+            if (rayDirX > 0) texNum = 2; // Este
+            else texNum = 3; // Oeste
+        } else {
+            if (rayDirY > 0) texNum = 1; // Sur
+            else texNum = 0; // Norte
+        }
+        // 6. Calcular las coordenadas de textura
+        double wallX;
+        if (side == 0) wallX = data->player.position.y + perpWallDist * rayDirY;
+        else          wallX = data->player.position.x + perpWallDist * rayDirX;
+        wallX -= floor(wallX);
+        //wallX = fmod(wallX, 1.0);//añadido
+        int texX = (int)(wallX * (double)TEXTURE_WIDTH);
+        if ((side == 0 && rayDirX > 0) || (side == 1 && rayDirY < 0))//añadido
+            texX = TEXTURE_WIDTH - texX - 1;
+        //if (side == 0 && rayDirX > 0) texX = TEXTURE_WIDTH - texX - 1;
+        if (side == 1 && rayDirY < 0) texX = TEXTURE_WIDTH - texX - 1;
+        // Asegura que texX esté en el rango [0, TEX_WIDTH - 1]
+        texX = texX % TEXTURE_WIDTH;
+        if (texX < 0) texX += TEXTURE_WIDTH;
+        double step = 1.0 * TEXTURE_HEIGHT / lineHeight;
+        double texPos = (drawStart - WINDOW_HEIGHT / 2 + lineHeight / 2) * step;
+        // 7. Dibujar la columna con textura
+        for (int y = drawStart; y < drawEnd; y++) {
+            int texY = (int)texPos & (TEXTURE_HEIGHT - 1);
+            texPos += step;
+            int color = data->textures._texture[texNum].address[TEXTURE_HEIGHT * texY + texX];
+            my_mlx_pixel_put(&data->mlx, x, y, color); // Asegúrate de que x e y estén en el orden correcto
+        }
+        x++;
+    }
+    mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->mlx.img, 0, 0);
+}
+
+
+
+
+//falta cerrar ventana con la x de la ventana (boton rojo)
+int key_press(int key_code, t_cub3d *data)
+{
+	if (key_code == 65307 || key_code == 113)
+	{
+		mlx_destroy_window(data->mlx.mlx, data->mlx.win);
+		exit(0);
+	}
+	if (key_code == 65362)//arriba
+		update_position(data, UP);
+	if (key_code == 65363)//derecha
+		update_position(data, RIGHT);
+	if (key_code == 65364)//abajo
+		update_position(data, DOWN);
+	if (key_code == 65361)//izquierda
+		update_position(data, LEFT);
+	render_frame(data);
+	return 0;
+}
