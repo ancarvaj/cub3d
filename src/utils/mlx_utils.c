@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 15:58:22 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 17:05:52 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/23 17:24:40 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	update_position(t_cub3d *data, int vector)
 		ft_strafe_right(data, move_speed);
 }
 
-//falta cerrar ventana con la x de la ventana (boton rojo)
 int	key_press(int key_code, t_cub3d *data)
 {
 	if (key_code == 65307)

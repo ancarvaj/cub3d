@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:38:41 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 15:54:41 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/23 17:22:19 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ int	check_empty_line(char **content)
 	return (0);
 }
 
-//comprobar que se pueda mover ej. 111
-//								   1N1
-//								   111 algo asi no lo compruebo
 int	ft_check_map(char **map)
 {
 	if (ft_check_map_char(map))
