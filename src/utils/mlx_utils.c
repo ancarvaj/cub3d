@@ -12,6 +12,28 @@
 
 #include "cub3d.h"
 
+void	create_window(t_mlx *mlx)
+{
+	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3d");
+	if (!mlx->win)
+		exit(ft_error("Error\nFailed creating window\n"));
+}
+
+int	ft_close_window(t_mlx *mlx)
+{
+	mlx_destroy_window(mlx->mlx, mlx->win);
+	exit(0);
+}
+
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = mlx->_img.address + ((y * mlx->_img.size_line)
+			+ (x * (mlx->_img.bpp / 8)));
+	*(unsigned int *)dst = color;
+}
+
 void	update_position(t_cub3d *data, int vector)
 {
 	const double	move_speed = 0.2;

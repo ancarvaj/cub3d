@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:32:05 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 17:46:05 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/23 18:13:11 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ void				print_floor_ceiling(t_cub3d *data, int color_floor,
 void				render_frame(t_cub3d *data);
 int					key_press(int key_code, t_cub3d *data);
 int					parse_color(enum e_identifier id, int *color, char *path);
-char				*get_path(char *line, enum e_identifier *tmp);
+char				*get_texture_path(char *line, enum e_identifier *tmp);
 int					floor_not_surround_by_wall(char **map, int x, int y);
 int					void_surronded_by_floor(char **map, int x, int y);
 int					check_collision(t_cub3d *data, double new_x, double new_y);
@@ -222,5 +222,7 @@ void				draw_textured_column(t_cub3d *data, t_raycast *ray,
 double				calculate_perp_dis(t_raycast *ray, t_player *player,
 						int side);
 double				safe_divide(double numerator, double denominator);
+void				create_window(t_mlx *mlx);
+int					ft_close_window(t_mlx *mlx);
 
 #endif

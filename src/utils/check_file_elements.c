@@ -6,27 +6,11 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:54:30 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/22 15:57:50 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/23 18:12:03 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-enum e_identifier	ft_identifier(char *line)
-{
-	int					i;
-	char				*ident;
-	enum e_identifier	id;
-
-	line = skip_pattern(line, " \t");
-	if (!*line || *line == '\n')
-		return (0);
-	i = goto_pattern(line, " \t\n");
-	ident = ft_strdup_len(line, i);
-	id = ft_get_identifier(ident);
-	free(ident);
-	return (id);
-}
 
 int	ft_check_file_elements(char **file)
 {
@@ -53,19 +37,4 @@ int	ft_check_file_elements(char **file)
 		i++;
 	}
 	return (ft_error("Error\nNo idea, but there is an error\n"));
-}
-
-char	*get_path(char *line, enum e_identifier *tmp)
-{
-	int		i;
-	char	*ident;
-
-	line = skip_pattern(line, " \n");
-	if (!*line || *line == '\n')
-		return (0);
-	i = goto_pattern(line, " \t\n");
-	ident = ft_strdup_len(line, i);
-	*tmp = ft_get_identifier(ident);
-	free(ident);
-	return (line + i);
 }

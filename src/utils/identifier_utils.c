@@ -31,6 +31,22 @@ enum e_identifier	ft_get_identifier(const char *line)
 	return (ERR);
 }
 
+enum e_identifier	ft_identifier(char *line)
+{
+	int					i;
+	char				*ident;
+	enum e_identifier	id;
+
+	line = skip_pattern(line, " \t");
+	if (!*line || *line == '\n')
+		return (0);
+	i = goto_pattern(line, " \t\n");
+	ident = ft_strdup_len(line, i);
+	id = ft_get_identifier(ident);
+	free(ident);
+	return (id);
+}
+
 char	*skip_pattern(char *s, char const *follow)
 {
 	int	i;

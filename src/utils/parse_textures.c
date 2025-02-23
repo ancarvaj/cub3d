@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:14:09 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 17:49:13 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/23 18:13:30 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	get_textures(char **content, t_textures *textures)
 	tmp = ERR;
 	while (content[i])
 	{
-		path = get_path(content[i], &tmp);
+		path = get_texture_path(content[i], &tmp);
 		if ((tmp == NO || tmp == SO || tmp == WE || tmp == EA) && path)
 			parse_texture(tmp, textures->texture_path, path);
 		else if ((tmp == F || tmp == C) && path)
@@ -96,4 +96,19 @@ void	load_textures(t_textures *textures, t_mlx *mlx)
 				&textures->_texture[i].bpp, &textures->_texture[i].size_line,
 				&textures->_texture[i].endian);
 	}
+}
+
+char	*get_texture_path(char *line, enum e_identifier *tmp)
+{
+	int		i;
+	char	*ident;
+
+	line = skip_pattern(line, " \n");
+	if (!*line || *line == '\n')
+		return (0);
+	i = goto_pattern(line, " \t\n");
+	ident = ft_strdup_len(line, i);
+	*tmp = ft_get_identifier(ident);
+	free(ident);
+	return (line + i);
 }
