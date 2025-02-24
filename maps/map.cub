@@ -1,9 +1,9 @@
                 
-                                                 SO                 texture/purplestone.xpm     
+                                                 SO                 texture/marta.xpm     
 
 
 
-                F 162,11,0000010                                      
+                F 11,195,127                                      
 
                         
                 
@@ -14,15 +14,15 @@
 
 
 
-                EA          texture/redbrick.xpm  
+                NO          texture/marta.xpm  
                  
 
 
                         
         
-                                        C 161,15,125   
+                                        C 58,212,243   
                
-               NO                              texture/plank.xpm                                                                                                         
+               EA                             texture/wood.xpm                                                                                                         
         
  
                         
@@ -30,7 +30,7 @@
 
                          
                         
-                        WE                       texture/wall2.xpm
+                        WE                       texture/wood.xpm
         1111111111111111111111111                                                                     
         1000000000110000000000001111111111                                  
         1011000001110000000000E0000000001                  
