@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:37:36 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 15:54:18 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:17:44 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	char_color(char c)
 	const char	color[12] = "0123456789,";
 	int			i;
 
-	if (c == '-')
+	if (c == '-' || c == '+')
 		exit(ft_error("Error\nDo not use simbol + or -\n"));
 	i = 0;
 	while (color[i])
@@ -56,9 +56,9 @@ int	convert_rgb_to_hex(char *color)
 		i = goto_pattern(color, ",");
 		col = ft_strdup_len(color, i);
 		color = skip_pattern(color, "0123456789");
-		if (!col || !col[0] || col[0] == ',')
+		if (!col || !col[0] || !ft_strchr("0123456789,", *col))//!col[0] || col[0] == ',' || *col == ' ' || *col == '\t')
 			exit(ft_error("Error\nInvalid color,\
-				permited->(0-255,0-255,0-255)\n"));
+ permited->(0-255,0-255,0-255)\n"));
 		color++;
 		i = ft_atoi(col);
 		if (i > 255 || i < 0)

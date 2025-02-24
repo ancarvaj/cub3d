@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures.c                                         :+:      :+:    :+:   */
+/*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:14:09 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 18:13:30 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:02:01 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ void	load_textures(t_textures *textures, t_mlx *mlx)
 		textures->texture[i] = mlx_xpm_file_to_image(mlx->mlx,
 				textures->texture_path[i], &text_width, &text_height);
 		if (!textures->texture[i])
-			exit(ft_error("Error cargando textura\n"));
+			exit(ft_error("Error\nTexture is not correct\n"));
 		if (text_width != TEXTURE_WIDTH || text_height != TEXTURE_HEIGHT)
-			exit(ft_error("Error: La textura, no tiene el tamaño correcto"));
+			exit(ft_error("Error\nTexture is not 64x64\n"));
 		textures->_texture[i].address
 			= (int*)mlx_get_data_addr(textures->texture[i],
 				&textures->_texture[i].bpp, &textures->_texture[i].size_line,
