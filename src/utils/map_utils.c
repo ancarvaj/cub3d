@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:52:35 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 15:46:23 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:24:46 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,23 @@
 
 int	max_line(char **matrix)
 {
-	int	i;
-	int	ret;
+	int		i;
+	int		ret;
+	char	*max_line;
 
 	i = 0;
 	ret = 0;
 	while (matrix[i])
 	{
 		if (ret < ft_strlen(matrix[i]))
+		{
+			max_line = matrix[i];
 			ret = ft_strlen(matrix[i]);
+		}
 		i++;
 	}
+	if (max_line[ret - 1] == '\n')
+		ret--;
 	return (ret);
 }
 
@@ -41,32 +47,46 @@ void	character(int character, int *position)
 		*position = 5;
 }
 
-int	**matomi(char **matrix, int *line)
+int	*fill_line(char *line, int width)
 {
 	int	i;
-	int	j;
-	int	**result;
+	int	*map_line;
 
-	result = malloc(sizeof(int *) * ft_strlen_double(matrix));
 	i = 0;
-	*line = max_line(matrix);
-	while (matrix[i])
+	map_line = malloc(sizeof(int) * width);
+	while (line[i] && line[i] != '\n')
 	{
-		result[i] = malloc(sizeof(int) * *line);
-		j = 0;
-		while (matrix[i][j] && j < *line)
-		{
-			if (!check_character(matrix[i][j]))
-				character(matrix[i][j], &result[i][j]);
-			else if (matrix[i][j] == '\n' || matrix[i][j] == ' ')
-				result[i][j] = 1;
-			else
-				result[i][j] = matrix[i][j] - '0';
-			j++;
-		}
+		if (!check_character(line[i]))
+			character(line[i], &map_line[i]);
+		else if (line[i] == ' ')
+			map_line[i] = 1;
+		else
+			map_line[i] = line[i] - '0';
 		i++;
 	}
-	return (result);
+	while (i < width)
+	{
+		map_line[i] = 1;
+		i++;
+	}
+	return (map_line);
+}
+
+int	**matomi(char **matrix, int *map_height, int *map_width)
+{
+	int	i;
+	int	**map;
+
+	*map_height = ft_strlen_double(matrix);
+	map = malloc(sizeof(int *) * (*map_height));
+	i = 0;
+	*map_width = max_line(matrix);
+	while (i < *map_height)
+	{
+		map[i] = fill_line(matrix[i], *map_width);
+		i++;
+	}
+	return (map);
 }
 
 char	**get_map(char **file)

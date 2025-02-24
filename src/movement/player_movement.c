@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:08:08 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 17:06:03 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:28:39 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ void	ft_down_player(t_cub3d *data, const double move_speed)
 	double	new_x;
 	double	new_y;
 
-	if (data->map.map[(int)(data->player.position.x
+	/*if (data->map.map[(int)(data->player.position.x
 			- data->player.direction.x * (move_speed + 0.3))]
 			[(int)(data->player.position.y -
 			data->player.direction.y * (move_speed + 0.3))] == 1)
-		return ;
+		return ;*/
 	new_x = data->player.position.x - data->player.direction.x * move_speed;
 	new_y = data->player.position.y - data->player.direction.y * move_speed;
 	if (check_collision(data, new_x, new_y))

@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:32:05 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 18:13:11 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:16:03 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ int					get_position(char **map, int *x, int *y);
 int					ft_top(char **map, int *x, int *y);
 int					ft_right(char **map, int *x, int *y);
 int					ft_check_map_wall(char **map);
-int					**matomi(char **matrix, int *line);
+int					**matomi(char **matrix, int *map_height, int *map_widht);
 char				**get_map(char **file);
 int					parse_texture(enum e_identifier id,
 						char **files, char *texture);

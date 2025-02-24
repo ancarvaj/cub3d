@@ -19,7 +19,6 @@ double	safe_divide(double numerator, double denominator)
 	return (numerator / denominator);
 }
 
-// ray_calculation.c
 void	calculate_ray_direction(t_raycast *ray, t_player *player, int x)
 {
 	const double	camera_x = 2 * x / (double)WINDOW_WIDTH - 1;

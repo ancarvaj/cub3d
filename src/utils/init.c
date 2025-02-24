@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:58:12 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 15:12:07 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:25:13 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,5 @@ void	map_init(t_map *map, char **char_map)
 {
 	map->dimension.width = 0;
 	map->dimension.height = 0;
-	map->map = matomi(char_map, &map->dimension.width);
-	map->dimension.height = ft_strlen_double(char_map);
+	map->map = matomi(char_map, &map->dimension.height, &map->dimension.width);
 }
