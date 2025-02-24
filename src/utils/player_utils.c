@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_vector.c                                    :+:      :+:    :+:   */
+/*   player_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:52:10 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 15:20:43 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:54:06 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	set_player_camera(double x, double y, t_point *camera)
 
 void	get_player_direction(t_player *player, int vector)
 {
-	if (vector == SOUTH)
+	if (vector == NORTH)
 	{
 		set_player_dir(-1, 0, &player->direction);
 		set_player_camera(0, 0.66, &player->camera);
 	}
-	else if (vector == NORTH)
+	else if (vector == SOUTH)
 	{
 		set_player_dir(1, 0, &player->direction);
 		set_player_camera(0, -0.66, &player->camera);
@@ -43,7 +43,7 @@ void	get_player_direction(t_player *player, int vector)
 	}
 	else if (vector == WEST)
 	{
-		set_player_dir(0, .1, &player->direction);
+		set_player_dir(0, -1, &player->direction);
 		set_player_camera(-0.66, 0, &player->camera);
 	}
 }
