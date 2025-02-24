@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:37:36 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/24 15:17:44 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:21:40 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	convert_rgb_to_hex(char *color)
 		i = goto_pattern(color, ",");
 		col = ft_strdup_len(color, i);
 		color = skip_pattern(color, "0123456789");
-		if (!col || !col[0] || !ft_strchr("0123456789,", *col))//!col[0] || col[0] == ',' || *col == ' ' || *col == '\t')
+		if (!col || !col[0] || !ft_strchr("0123456789,", *col))
 			exit(ft_error("Error\nInvalid color,\
  permited->(0-255,0-255,0-255)\n"));
 		color++;
