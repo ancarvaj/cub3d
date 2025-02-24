@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_elements.c                                    :+:      :+:    :+:   */
+/*   check_file_elements.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:54:30 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 18:12:03 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:38:01 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int	ft_check_file_elements(char **file)
 		file_identifiers += identifier_tmp;
 		i++;
 	}
-	return (ft_error("Error\nNo idea, but there is an error\n"));
+	return (ft_error("Error\nNo idea, but there is an error, \
+let me guess...no map?\n"));
 }

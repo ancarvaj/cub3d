@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:04:16 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 17:21:37 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:40:31 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char *argv[])
 	t_cub3d	cub3d;
 
 	if (argc != 2)
-		return (ft_error("Invalid number of args >:(\n"));
+		return (ft_error("Error\nInvalid number of arguments\n"));
 	if (ft_check_name(argv[1]))
 		return (1);
 	file_content = ft_get_file_content(argv[1]);

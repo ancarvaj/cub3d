@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:07:47 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 13:48:05 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:47:30 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ char	**ft_get_file_content(char *file_name)
 	}
 	s = get_next_line(fd);
 	if (!s)
-		return (NULL);
+		return (ft_error("Error\nNot sure...But i think you should \
+put content in the file\n"), NULL);
 	content = (NULL);
 	while (s)
 	{
