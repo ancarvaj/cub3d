@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:58:12 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/24 16:25:13 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/25 12:20:20 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	player_init(t_player *player, t_map *map)
 			{
 				get_player_direction(player, map->map[i][j]);
 				map->map[i][j] = 0;
-				player->position.x = i + 0.0;
-				player->position.y = j + 0.0;
+				player->position.x = i + 0.5;
+				player->position.y = j + 0.5;
 				return ;
 			}
 			j++;

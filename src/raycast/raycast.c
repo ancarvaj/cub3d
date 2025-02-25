@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 15:55:38 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 17:08:52 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/25 12:07:26 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ int	determine_texture(t_raycast *ray, int side)
 	if (side == 0)
 	{
 		if (ray->ray_dir.x > 0)
-			return (TEX_EAST);
-		return (TEX_WEST);
+			return (TEX_SOUTH);
+		return (TEX_NORTH);
 	}
 	else
 	{
 		if (ray->ray_dir.y > 0)
-			return (TEX_SOUTH);
-		return (TEX_NORTH);
+			return (TEX_EAST);
+		return (TEX_WEST);
 	}
 }
 
