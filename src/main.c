@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:04:16 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/24 17:40:31 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:14:21 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,3 @@ int	main(int argc, char *argv[])
 	game_start(&cub3d);
 	return (0);
 }
-//mensaje de error correctos: Error\n +
-//otro//mensaje -> mirar falta comprobar todos los casos
-//aprender matematicas ->paloma
