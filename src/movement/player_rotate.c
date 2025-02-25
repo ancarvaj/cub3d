@@ -14,10 +14,10 @@
 
 void	ft_right_player(t_cub3d *data, const double rot_speed)
 {
-	const double			old_plane_x = data->player.camera.x;
+	const double	old_plane_x = data->player.camera.x;
 	const double	old_dir_x = data->player.direction.x;
-	const	double	cos_rot = cos(-rot_speed);
-	const	double	sin_rot= sin(-rot_speed);
+	const double	cos_rot = cos(-rot_speed);
+	const double	sin_rot = sin(-rot_speed);
 
 	data->player.direction.x = data->player.direction.x * cos_rot
 		- data->player.direction.y * sin_rot;
@@ -25,7 +25,7 @@ void	ft_right_player(t_cub3d *data, const double rot_speed)
 		+ data->player.direction.y * cos_rot;
 	data->player.camera.x = data->player.camera.x * cos_rot
 		- data->player.camera.y * sin_rot;
-	data->player.camera.y = old_plane_x * sin_rot 
+	data->player.camera.y = old_plane_x * sin_rot
 		+ data->player.camera.y * cos_rot;
 }
 
