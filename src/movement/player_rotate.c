@@ -14,34 +14,34 @@
 
 void	ft_right_player(t_cub3d *data, const double rot_speed)
 {
-	double	old_plane_x;
-	double	old_dir_x;
+	const double			old_plane_x = data->player.camera.x;
+	const double	old_dir_x = data->player.direction.x;
+	const	double	cos_rot = cos(-rot_speed);
+	const	double	sin_rot= sin(-rot_speed);
 
-	old_dir_x = data->player.direction.x;
-	data->player.direction.x = data->player.direction.x * cos(-rot_speed)
-		- data->player.direction.y * sin(-rot_speed);
-	data->player.direction.y = old_dir_x * sin(-rot_speed)
-		+ data->player.direction.y * cos(-rot_speed);
-	old_plane_x = data->player.camera.x;
-	data->player.camera.x = data->player.camera.x * cos(-rot_speed)
-		- data->player.camera.y * sin(-rot_speed);
-	data->player.camera.y = old_plane_x * sin(-rot_speed)
-		+ data->player.camera.y * cos(-rot_speed);
+	data->player.direction.x = data->player.direction.x * cos_rot
+		- data->player.direction.y * sin_rot;
+	data->player.direction.y = old_dir_x * sin_rot
+		+ data->player.direction.y * cos_rot;
+	data->player.camera.x = data->player.camera.x * cos_rot
+		- data->player.camera.y * sin_rot;
+	data->player.camera.y = old_plane_x * sin_rot 
+		+ data->player.camera.y * cos_rot;
 }
 
 void	ft_left_player(t_cub3d *data, const double rot_speed)
 {
-	double	old_plane_x;
-	double	old_dir_x;
+	const double	old_plane_x = data->player.camera.x;
+	const double	old_dir_x = data->player.direction.x;
+	const double	sin_rot = sin(rot_speed);
+	const double	cos_rot = cos(rot_speed);
 
-	old_dir_x = data->player.direction.x;
-	data->player.direction.x = data->player.direction.x * cos(rot_speed)
-		- data->player.direction.y * sin(rot_speed);
-	data->player.direction.y = old_dir_x * sin(rot_speed)
-		+ data->player.direction.y * cos(rot_speed);
-	old_plane_x = data->player.camera.x;
-	data->player.camera.x = data->player.camera.x * cos(rot_speed)
-		- data->player.camera.y * sin(rot_speed);
-	data->player.camera.y = old_plane_x * sin(rot_speed)
-		+ data->player.camera.y * cos(rot_speed);
+	data->player.direction.x = data->player.direction.x * cos_rot
+		- data->player.direction.y * sin_rot;
+	data->player.direction.y = old_dir_x * sin_rot
+		+ data->player.direction.y * cos_rot;
+	data->player.camera.x = data->player.camera.x * cos_rot
+		- data->player.camera.y * sin_rot;
+	data->player.camera.y = old_plane_x * sin_rot
+		+ data->player.camera.y * cos_rot;
 }
