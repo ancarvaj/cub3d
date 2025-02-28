@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:38:41 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/23 17:22:19 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/02/28 18:39:10 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,15 @@
 int	check_empty_line(char **content)
 {
 	int	i;
+	int	t;
 
 	i = 0;
 	while (content[i])
 	{
-		if (content[i][0] == '\n')
+		t = 0;
+		while (content[i][t] && content[i][t] == ' ')
+			t++;
+		if (content[i][t] == '\n')
 			return (1);
 		i++;
 	}
