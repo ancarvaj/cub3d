@@ -6,7 +6,7 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 15:49:18 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/28 19:40:31 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/03/05 13:47:57 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ int	ft_check_map_char(char **map)
 	int	i;
 	int	j;
 
-	//if (check_empty_line(map))
-	//	return (ft_error("Error\nFound unexpected empty line in map\n"));
 	if (character_in_map(map))
 		return (1);
 	i = 0;

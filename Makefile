@@ -1,6 +1,6 @@
 NAME := cub3D
 CFLAGS := -Wall -Wextra -Werror
-CFLAGS += -fsanitize=address -g3
+#CFLAGS += -fsanitize=address -g3
 HEADER := -Iincludes -Imlx -Ilibft
 
 LIB := -Llibft -lft -lm -Lmlx -lmlx -lXext -lX11 

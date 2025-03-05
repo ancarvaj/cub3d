@@ -6,29 +6,11 @@
 /*   By: ancarvaj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:38:41 by ancarvaj          #+#    #+#             */
-/*   Updated: 2025/02/28 18:39:10 by ancarvaj         ###   ########.fr       */
+/*   Updated: 2025/03/05 13:47:51 by ancarvaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	check_empty_line(char **content)
-{
-	int	i;
-	int	t;
-
-	i = 0;
-	while (content[i])
-	{
-		t = 0;
-		while (content[i][t] && content[i][t] == ' ')
-			t++;
-		if (content[i][t] == '\n')
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 int	ft_check_map(char **map)
 {
